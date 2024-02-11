@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TicTacToe</title>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .main {
+        width: 100%;
+        height: 100vh;
+        /* background-color: grey; */
+        /* padding-top: 200px; */
+      }
+      .ttt {
+        width: 30%;
+        height: 330px;
+        /* background-color: grey; */
+        /* border: 1px solid black; */
+        margin: auto;
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .tttbox {
+        width: 30%;
+        height: 100px;
+        background-color: grey;
+        border: 1px solid black;
+        border-radius: 10px;
+      }
+      .x0 {
+        padding: 10px;
+        padding-top: 35px;
+        text-align: center;
+        color: white;
+        /* border: 1px solid red; */
+      }
+      .winner {
+        /* border: 1px solid red; */
+        text-align: center;
+        padding: 20px;
+      }
+      .resetbtn {
+        padding: 10px;
+        background-color: black;
+        color: white;
+        border-radius: 20px;
+        border: none;
+      }
+      .top {
+        /* border: 1px solid black; */
+        text-align: center;
+      }
+      .head {
+        margin: 20px;
+      }
+      .resetbtn {
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="top">
+        <h1 class="head">TIC TAC TOE</h1>
+        <button class="resetbtn" onclick="resetbtn()">Reset</button>
+      </div>
+      <div class="ttt">
+        <div id="tttbox1" class="tttbox">
+          <h2 id="x01" class="x0"></h2>
+        </div>
+        <div id="tttbox2" class="tttbox">
+          <h2 id="x02" class="x0"></h2>
+        </div>
+        <div id="tttbox3" class="tttbox">
+          <h2 id="x03" class="x0"></h2>
+        </div>
+        <div id="tttbox4" class="tttbox">
+          <h2 id="x04" class="x0"></h2>
+        </div>
+        <div id="tttbox5" class="tttbox">
+          <h2 id="x05" class="x0"></h2>
+        </div>
+        <div id="tttbox6" class="tttbox">
+          <h2 id="x06" class="x0"></h2>
+        </div>
+        <div id="tttbox7" class="tttbox">
+          <h2 id="x07" class="x0"></h2>
+        </div>
+        <div id="tttbox8" class="tttbox">
+          <h2 id="x08" class="x0"></h2>
+        </div>
+        <div id="tttbox9" class="tttbox">
+          <h2 id="x09" class="x0"></h2>
+        </div>
+      </div>
+      <div class="winner">
+        <h1 class="winnername">Winner :</h1>
+      </div>
+    </div>
+    <!-- <script src="js/index.js"></script>  -->
+    <script>
+      console.log("hi");
+      let tttbox1 = document.getElementById("tttbox1");
+      let tttbox2 = document.getElementById("tttbox2");
+      let tttbox3 = document.getElementById("tttbox3");
+      let tttbox4 = document.getElementById("tttbox4");
+      let tttbox5 = document.getElementById("tttbox5");
+      let tttbox6 = document.getElementById("tttbox6");
+      let tttbox7 = document.getElementById("tttbox7");
+      let tttbox8 = document.getElementById("tttbox8");
+      let tttbox9 = document.getElementById("tttbox9");
+      let x01 = document.getElementById("x01");
+      let x02 = document.getElementById("x02");
+      let x03 = document.getElementById("x03");
+      let x04 = document.getElementById("x04");
+      let x05 = document.getElementById("x05");
+      let x06 = document.getElementById("x06");
+      let x07 = document.getElementById("x07");
+      let x08 = document.getElementById("x08");
+      let x09 = document.getElementById("x09");
+      let winnername = document.querySelector(".winnername");
+      let tttbox = document.getElementsByClassName("tttbox");
+      let i = 0;
+      tttbox1.addEventListener("click", () => {
+        if (
+          x01.innerHTML == "" &&
+          i % 2 == 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x01.innerHTML = "";
+          x01.innerHTML = "0";
+        } else if (
+          x01.innerHTML == "" &&
+          i % 2 != 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x01.innerHTML = "";
+          x01.innerHTML = "X";
+        }
+        i++;
+        checkWin();
+        if (i == 9) {
+          winnername.innerHTML = "Nobody Wins";
+          reset();
+        }
+      });
+      tttbox2.addEventListener("click", () => {
+        if (
+          x02.innerHTML == "" &&
+          i % 2 == 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x02.innerHTML = "";
+          x02.innerHTML = "0";
+        } else if (
+          x02.innerHTML == "" &&
+          i % 2 != 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x02.innerHTML = "";
+          x02.innerHTML = "X";
+        }
+        i++;
+        checkWin();
+        if (i == 9) {
+          winnername.innerHTML = "Nobody Wins";
+          reset();
+        }
+      });
+      tttbox3.addEventListener("click", () => {
+        if (
+          x03.innerHTML == "" &&
+          i % 2 == 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x03.innerHTML = "";
+          x03.innerHTML = "0";
+        } else if (
+          x03.innerHTML == "" &&
+          i % 2 != 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x03.innerHTML = "";
+          x03.innerHTML = "X";
+        }
+        i++;
+        checkWin();
+        if (i == 9) {
+          winnername.innerHTML = "Nobody Wins";
+          reset();
+        }
+      });
+      tttbox4.addEventListener("click", () => {
+        if (
+          x04.innerHTML == "" &&
+          i % 2 == 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x04.innerHTML = "";
+          x04.innerHTML = "0";
+        } else if (
+          x04.innerHTML == "" &&
+          i % 2 != 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x04.innerHTML = "";
+          x04.innerHTML = "X";
+        }
+        i++;
+        checkWin();
+        if (i == 9) {
+          winnername.innerHTML = "Nobody Wins";
+          reset();
+        }
+      });
+      tttbox5.addEventListener("click", () => {
+        if (
+          x05.innerHTML == "" &&
+          i % 2 == 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x05.innerHTML = "";
+          x05.innerHTML = "0";
+        } else if (
+          x05.innerHTML == "" &&
+          i % 2 != 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x05.innerHTML = "";
+          x05.innerHTML = "X";
+        }
+        i++;
+        checkWin();
+        if (i == 9) {
+          winnername.innerHTML = "Nobody Wins";
+          reset();
+        }
+      });
+      tttbox6.addEventListener("click", () => {
+        if (
+          x06.innerHTML == "" &&
+          i % 2 == 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x06.innerHTML = "";
+          x06.innerHTML = "0";
+        } else if (
+          x06.innerHTML == "" &&
+          i % 2 != 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x06.innerHTML = "";
+          x06.innerHTML = "X";
+        }
+        i++;
+        checkWin();
+        if (i == 9) {
+          winnername.innerHTML = "Nobody Wins";
+          reset();
+        }
+      });
+      tttbox7.addEventListener("click", () => {
+        if (
+          x07.innerHTML == "" &&
+          i % 2 == 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x07.innerHTML = "";
+          x07.innerHTML = "0";
+        } else if (
+          x07.innerHTML == "" &&
+          i % 2 != 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x07.innerHTML = "";
+          x07.innerHTML = "X";
+        }
+        i++;
+        checkWin();
+        if (i == 9) {
+          winnername.innerHTML = "Nobody Wins";
+          reset();
+        }
+      });
+      tttbox8.addEventListener("click", () => {
+        if (
+          x08.innerHTML == "" &&
+          i % 2 == 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x08.innerHTML = "";
+          x08.innerHTML = "0";
+        } else if (
+          x08.innerHTML == "" &&
+          i % 2 != 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x08.innerHTML = "";
+          x08.innerHTML = "X";
+        }
+        i++;
+        checkWin();
+        if (i == 9) {
+          winnername.innerHTML = "Nobody Wins";
+          reset();
+        }
+      });
+      tttbox9.addEventListener("click", () => {
+        if (
+          x09.innerHTML == "" &&
+          i % 2 == 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x09.innerHTML = "";
+          x09.innerHTML = "0";
+        } else if (
+          x09.innerHTML == "" &&
+          i % 2 != 0 &&
+          winnername.innerHTML == "Winner : "
+        ) {
+          x09.innerHTML = "";
+          x09.innerHTML = "X";
+        }
+        i++;
+        checkWin();
+        if (i == 9) {
+          winnername.innerHTML = "Nobody Wins";
+          reset();
+        }
+      });
+
+      function checkWin() {
+        if (
+          x01.innerHTML == "0" &&
+          x02.innerHTML == "0" &&
+          x03.innerHTML == "0"
+        ) {
+          winnername.innerHTML = `our winner is Player 0`;
+          reset();
+        }
+        if (
+          x04.innerHTML == "0" &&
+          x05.innerHTML == "0" &&
+          x06.innerHTML == "0"
+        ) {
+          winnername.innerHTML = `our winner is Player 0`;
+          reset();
+        }
+        if (
+          x07.innerHTML == "0" &&
+          x08.innerHTML == "0" &&
+          x09.innerHTML == "0"
+        ) {
+          winnername.innerHTML = `our winner is Player 0`;
+          reset();
+        }
+        if (
+          x01.innerHTML == "0" &&
+          x04.innerHTML == "0" &&
+          x07.innerHTML == "0"
+        ) {
+          winnername.innerHTML = `our winner is Player 0`;
+          reset();
+        }
+        if (
+          x02.innerHTML == "0" &&
+          x05.innerHTML == "0" &&
+          x08.innerHTML == "0"
+        ) {
+          winnername.innerHTML = `our winner is Player 0`;
+          reset();
+        }
+        if (
+          x03.innerHTML == "0" &&
+          x06.innerHTML == "0" &&
+          x09.innerHTML == "0"
+        ) {
+          winnername.innerHTML = `our winner is Player 0`;
+          reset();
+        }
+        if (
+          x01.innerHTML == "0" &&
+          x05.innerHTML == "0" &&
+          x09.innerHTML == "0"
+        ) {
+          winnername.innerHTML = `our winner is Player 0`;
+          reset();
+        }
+        if (
+          x03.innerHTML == "0" &&
+          x05.innerHTML == "0" &&
+          x07.innerHTML == "0"
+        ) {
+          winnername.innerHTML = `our winner is Player 0`;
+          reset();
+        }
+
+        if (
+          x01.innerHTML == "X" &&
+          x02.innerHTML == "X" &&
+          x03.innerHTML == "X"
+        ) {
+          winnername.innerHTML = `our winner is Player X`;
+          reset();
+        }
+        if (
+          x04.innerHTML == "X" &&
+          x05.innerHTML == "X" &&
+          x06.innerHTML == "X"
+        ) {
+          winnername.innerHTML = `our winner is Player X`;
+          reset();
+        }
+        if (
+          x07.innerHTML == "X" &&
+          x08.innerHTML == "X" &&
+          x09.innerHTML == "X"
+        ) {
+          winnername.innerHTML = `our winner is Player X`;
+          reset();
+        }
+        if (
+          x01.innerHTML == "X" &&
+          x04.innerHTML == "X" &&
+          x07.innerHTML == "X"
+        ) {
+          winnername.innerHTML = `our winner is Player X`;
+          reset();
+        }
+        if (
+          x02.innerHTML == "X" &&
+          x05.innerHTML == "X" &&
+          x08.innerHTML == "X"
+        ) {
+          winnername.innerHTML = `our winner is Player X`;
+          reset();
+        }
+        if (
+          x03.innerHTML == "X" &&
+          x06.innerHTML == "X" &&
+          x09.innerHTML == "X"
+        ) {
+          winnername.innerHTML = `our winner is Player X`;
+          reset();
+        }
+        if (
+          x01.innerHTML == "X" &&
+          x05.innerHTML == "X" &&
+          x09.innerHTML == "X"
+        ) {
+          winnername.innerHTML = `our winner is Player X`;
+          reset();
+        }
+        if (
+          x03.innerHTML == "X" &&
+          x05.innerHTML == "X" &&
+          x07.innerHTML == "X"
+        ) {
+          winnername.innerHTML = `our winner is Player X`;
+          reset();
+        }
+      }
+
+      function reset() {
+        setTimeout(resetbtn, 2000);
+        i = 0;
+      }
+      function resetbtn() {
+        x01.innerHTML = "";
+        x02.innerHTML = "";
+        x03.innerHTML = "";
+        x04.innerHTML = "";
+        x05.innerHTML = "";
+        x06.innerHTML = "";
+        x07.innerHTML = "";
+        x08.innerHTML = "";
+        x09.innerHTML = "";
+        winnername.innerHTML = "Winner : ";
+        i = 0;
+      }
+    </script>
+  </body>
+</html>
